@@ -373,7 +373,7 @@ private fun ReaderBody(model: AppModel, args: ReaderArgs, book: BookRow, uriText
         val chapters = remember(book.res, model.rev) { store.bookItems(book.res) }
         NbDialog({ dialog = 0 }, "Bookmarks and chapters") {
             NbButton("Bookmark this page", {
-                val pdfPage = cur + 1
+                val pdfPage = listState.firstVisibleItemIndex + 1
                 store.addBookmark(book.res, pdfPage, "p. " + PageMap.pdfToPrinted(pdfPage, book.offset))
                 marksRev++
             }, modifier = Modifier.fillMaxWidth(), color = pal.gs)
